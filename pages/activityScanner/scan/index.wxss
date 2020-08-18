@@ -1,0 +1,12 @@
+.notice{
+  width: 100%;
+  height: 500rpx;
+  text-align: center;
+}
+.hidden{
+  display: none;
+}
+
+.cu-tag{
+  padding: 0 130rpx;
+}

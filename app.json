@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/prelogin/index",
+    "pages/bind/index",
+    "pages/cgPwd/index",
+
+    "pages/index/index",
+
+    "pages/detail/index",
+
+    
+    "pages/activityAdmin/add/index",
+    "pages/activityAdmin/manage/index",
+
+    "pages/activityQuery/index",
+
+    "pages/activityScanner/index",
+    "pages/activityScanner/scan/index",
+
+
+    "pages/cert/index",
+    "pages/cert/add/index",
+    "pages/cert/detail/index",
+
+
+    "pages/test/index",
+
+    "pages/logs/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#72C142",
+    "navigationBarTitleText": "信工第二课堂",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

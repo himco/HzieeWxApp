@@ -1,0 +1,258 @@
+<view wx:if="{{newStep!=3}}" style="width:100%;height:100%;position:absolute;z-index:555" class="mask" bindtap="newToNext">
+
+	<view wx:if="{{newStep==0}}" style="position:fixed;transform: translateY(-6666rpx);;top:{{guidance[0].top}}px;left:{{guidance[0].left}}px;" class="bg-white solid-for-this arrow-left padding-sm animation-slide-right">这里打开二维码</view>
+	<view wx:if="{{newStep==1}}" style="position:absolute;top:{{guidance[1].top}}px;right:{{guidance[1].right}}px" class="bg-white solid-for-this arrow-right padding-sm animation-slide-left">点击查看个人信息</view>
+
+	<view style="width:100%" class="flex justify-center align-center">
+		<view wx:if="{{newStep==2}}" style="position:absolute;top:{{guidance[2].top}}px;" class="bg-white solid-for-this arrow-top padding-sm animation-slide-bottom">点击可查看详情哦~</view>
+	</view>
+
+</view>
+
+
+<!-- 组件-模态框 -->
+<view class="cu-modal {{showQrcode?'show':''}}" bindtap="showQrcode">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">我的二维码</view>
+			<!-- <view class="action" bindtap="showQrcode">
+				<text class="cuIcon-close text-red"></text>
+			</view> -->
+		</view>
+		<view class="padding-sm flex flex-direction justify-center align-center margin-bottom-xl">
+			<image style="width:100rpx" class="rotate" mode="widthFix" src="/images/fengche.png"></image>
+			<image style="width:400rpx" class="margin-top-sm" mode="widthFix" src='{{qrcode}}' />
+		</view>
+	</view>
+</view>
+<!-- END组件-模态框 -->
+
+<!-- 内容 -->
+<scroll-view scroll-y class="scrollPage">
+
+	<view class="head-bg flex flex-direction align-center justify-center">
+
+		<!-- 占位 -->
+		<view class="margin-top-xl"></view>
+		<view class="margin-top-xl"></view>
+		<view class="margin-top-xl"></view>
+
+		<view style="width:100%;height:100%;position:relative" class="padding-lg">
+
+			<!-- 概要部分 -->
+			<view style="width:200rpx;position:absolute;left:50%;transition:left .4s;transform: translateX(-50%);{{showUserInfo?'left:25%':''}}" class="flex flex-direction align-cneter">
+				<!-- 头像 -->
+				<view style="width:180rpx;position:relative" class="flex align-end">
+					<image style="width:170rpx" class="cu-avatar round" mode="widthFix" src="{{userInfo.avatarUrl==null?'/images/default-avatar.png':userInfo.avatarUrl}}" bindtap="showUserInfo"></image>
+					<!-- 二维码 -->
+					<image id="qrcode" style="width:64rpx;position:absolute;right:-10rpx" class="bg-white round" mode="widthFix" src="/images/qrcode.png" bindtap="showQrcode"></image>
+				</view>
+				<!-- 头像下部分 -->
+				<view style="width:180rpx" class="margin-top-sm flex flex-direction align-center">
+					<!-- 用户信息 -->
+					<view id="userinfo" style="position:relative" class="flex align-center">
+						<text class="text-xl text-white">{{userInfo.realName}}</text>
+						<view style="width:40rpx;position:absolute;right:-45rpx" class="arrow-for-this {{showUserInfo?'deg-right':'deg-down'}}" bindtap="showUserInfo"></view>
+					</view>
+					<text class="text-sm text-white">{{userInfo.grade==null?'':userInfo.grade}}{{userInfo.grade==null?'':'级'}}</text>
+				</view>
+			</view>
+			<!-- END概要部分 -->
+
+			<!-- 详情部分 -->
+			<view wx:if="{{showUserInfo}}" style="position:absolute;left:30%" class="padding-lg margin-left-xl radius flex flex-direction justify-center {{showUserInfo?'animation-slide-right':''}}">
+				<view class="flex userInfo">
+					<text class="cuIcon-profile text-white">学号</text>
+					<text style="padding-left:30rpx">{{userInfo.stuId}}</text>
+				</view>
+				<view class="flex userInfo">
+					<text class="cuIcon-tagfill text-white">专业</text>
+					<text style="padding-left:30rpx">{{userInfo.major}}</text>
+				</view>
+				<view class="flex userInfo">
+					<text class="cuIcon-group text-white">班级</text>
+					<text style="padding-left:30rpx">{{userInfo.classId}}</text>
+				</view>
+			</view>
+			<!-- END详情部分 -->
+		</view>
+
+	</view>
+
+	<!-- 数据部分 -->
+	<view style="box-shadow:unset" class="padding flex text-center text-grey bg-white shadow-warp">
+		<view class="flex flex-sub flex-direction solid-right" data-type="schoolActivity" bindtap="toDetail">
+			<view class="text-xxl text-blue">{{resume[0]==-1?'加载中':(resume[0])+' 枚'}}</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-attentionfill"></text>
+				<!-- <image style="float:left;width:40rpx" src="/images/xyhdz.png" mode="widthFix"></image>不清晰，暂时弃用 -->
+				校园活动章
+			</view>
+		</view>
+		<view id="detail" class="flex flex-sub flex-direction solid-right" data-type="lectureActivity" bindtap="toDetail">
+			<view class="text-xxl text-orange">{{resume[1]==-1?'加载中':(resume[1])+' 枚'}}</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-favorfill"></text>
+				讲座活动章
+			</view>
+		</view>
+		<view class="flex flex-sub flex-direction" data-type="practiceActivity" bindtap="toDetail">
+			<view class="text-xxl text-green">{{resume[2]==-1?'加载中':(resume[2])+' 次'}}</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-fork"></text>
+				社会实践
+			</view>
+		</view>
+	</view>
+	<!-- END数据部分 -->
+
+
+	<view class="cu-list menu card-menu margin-top-lg margin-bottom-sm shadow-lg radius">
+
+		<view wx:if="{{display_recorder}}" class="cu-item arrow">
+			<navigator class="content" url="/pages/activityScanner/index" hover-class="none">
+				<image src="/images/jly.png" mode="aspectFit"></image>
+				<text class="text-grey">记录员</text>
+			</navigator>
+		</view>
+
+		<view wx:if="{{display_maker}}" class="cu-item arrow {{pushMenu[0]?'deg-down':'deg-right'}}" data-id="0" bindtap="changeMenu">
+			<view class="content">
+				<image src="/images/hdxg.png" mode="aspectFit"></image>
+				<text class="text-grey">活动相关</text>
+			</view>
+			<text class="text-gray text-sm">新建/管理活动</text>
+		</view>
+
+		<!-- 新建活动 -->
+		<!-- 管理活动 -->
+		<view class="item-first{{pushMenu[0]?'-active':''}}">
+
+			<view style="margin:0;border-radius:0" class="cu-list menu card-menu shadow-lg">
+				<view class="cu-item arrow">
+					<navigator class="content" url="/pages/activityAdmin/add/index" hover-class="none">
+						<text class="text-gray">新建活动</text>
+					</navigator>
+				</view>
+			</view>
+
+			<view style="margin:0;border-radius:0" class="cu-list menu card-menu shadow-lg">
+				<view class="cu-item arrow">
+					<navigator class="content" url="/pages/activityAdmin/manage/index" hover-class="none">
+						<text class="text-gray">管理活动</text>
+					</navigator>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="cu-item arrow">
+			<navigator class="content" url="/pages/activityQuery/index" hover-class="none">
+				<image src="/images/hdcx.png" mode="aspectFit"></image>
+				<text class="text-grey">活动查询</text>
+			</navigator>
+		</view>
+
+	</view>
+
+
+	<view class="cu-list menu card-menu margin-top-sm margin-bottom-sm shadow-lg radius">
+
+		<view class="cu-item arrow {{pushMenu[1]?'deg-down':'deg-right'}}" data-id="1" bindtap="changeMenu">
+			<view class="content">
+				<image src="/images/rdkh.png" mode="aspectFit"></image>
+				<text class="text-grey">入党考核</text>
+			</view>
+		</view>
+		<!-- “新学期”系列活动 -->
+		<!-- 交换一小时 -->
+		<view class="item-first{{pushMenu[1]?'-active':''}}">
+
+			<view style="margin:0;border-radius:0" class="cu-list menu card-menu shadow-lg">
+				<view class="cu-item arrow" data-type="partyActivity" bindtap="toDetail">
+					<view class="content">
+						<text class="text-red">“新学期”系列活动</text>
+					</view>
+					<text class="text-green text-xs">初心剧场,早课查勤,不定期升旗</text>
+				</view>
+			</view>
+
+			<view style="margin:0;border-radius:0" class="cu-list menu card-menu shadow-lg">
+				<view class="cu-item arrow" data-type="partyTimeActivity" bindtap="toDetail">
+					<view class="content">
+						<text class="text-red">交换一小时</text>
+					</view>
+				</view>
+			</view>
+			<!-- <view style="width:100%;height:auto;border-bottom: 3rpx solid #ddd"></view> -->
+		</view>
+
+		<view class="cu-item arrow" data-type="volunteerActivity" bindtap="toDetail">
+			<view class="content">
+				<image src="/images/zysc.png" mode="aspectFit"></image>
+				<text class="text-grey">志愿时长</text>
+			</view>
+			<text class="text-green text-sm">{{resume[3]==-1?'加载中':'共'+(resume[3])+'小时'}}</text>
+		</view>
+
+		<view class="cu-item arrow" data-type="volunteerWork" bindtap="toDetail">
+			<view class="content">
+				<image src="/images/ygsc.png" mode="aspectFit"></image>
+				<text class="text-grey">义工时长</text>
+			</view>
+			<text class="text-green text-sm">{{resume[4]==-1?'加载中':'共'+(resume[4])+'小时'}}</text>
+		</view>
+
+	</view>
+
+	<view class="cu-list menu card-menu margin-top-sm margin-bottom-xl shadow-lg radius">
+
+		<!-- <view class="cu-item arrow {{pushMenu[1]?'deg-down':'deg-right'}}" data-id="1" bindtap="changeMenu"> -->
+		<view class="cu-item arrow">
+			<navigator class="content" url="/pages/cert/index" hover-class="none">
+				<image src="/images/wdzs.png" mode="aspectFit"></image>
+				<text class="text-grey">我的证书</text>
+			</navigator>
+			<navigator url="/pages/cert/index" hover-class="none">
+				<text class="text-orange text-sm">查看/录入证书</text>
+			</navigator>
+		</view>
+
+		<view class="cu-item arrow {{pushMenu[2]?'deg-down':'deg-right'}}" data-id="2" bindtap="changeMenu">
+			<navigator class="content" url="#" hover-class="none">
+				<image src="/images/zhgl.png" mode="aspectFit"></image>
+				<text class="text-grey">账户管理</text>
+			</navigator>
+		</view>
+
+		<!-- 修改密码 -->
+		<!-- 退出登录 -->
+		<view class="item-third{{pushMenu[2]?'-active':''}}">
+
+			<view style="margin:0;border-radius:0" class="cu-list menu card-menu shadow-lg">
+				<view class="cu-item arrow">
+					<navigator class="content" url="/pages/cgPwd/index" hover-class="none">
+						<text class="text-grey">修改密码</text>
+					</navigator>
+				</view>
+			</view>
+
+			<view style="margin:0;border-radius:0" class="cu-list menu card-menu shadow-lg">
+				<view class="cu-item arrow">
+					<view class="content" bindtap="logOut">
+						<text class="text-grey">退出登录</text>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="cu-item arrow">
+			<navigator class="content" url="/pages/logs/index" hover-class="none">
+				<image src="/images/gxls.png" mode="aspectFit"></image>
+				<text class="text-grey">更新历史</text>
+			</navigator>
+		</view>
+
+	</view>
+
+</scroll-view>

@@ -1,0 +1,97 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">管理活动</view>
+</cu-custom>
+<!--筛选项-->
+<view id="swiper-tab" class='{{showSearch?"show":"hide"}}'>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-currentind="0" bindtap="tabNav">{{first}}
+      <i data-currentind="0"></i>
+    </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-currentind="1" bindtap="tabNav">{{second}}
+      <i data-currentind="1"></i>
+    </view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-currentind="2" bindtap="tabNav">{{thirds}}
+      <i data-currentind="2"></i>
+    </view>
+  </view>
+
+  <!--筛选列表-->
+  <view class="tabLayer" hidden="{{tab[0]}}">
+    <text class="{{type_id==item.id?'active':''}}" wx:for="{{typeTabList}}" wx:key="p1" wx:for-item="item" data-id="{{item.id}}" data-index="0" bindtap="filter">{{item.title}}</text>
+  </view>
+  <view class="tabLayer" hidden="{{tab[1]}}">
+    <text class="{{term_id==item.id?'active':''}}" wx:for="{{termTabList}}" wx:key="p2" wx:for-item="item" data-id="{{item.id}}" data-index="1" bindtap="filter">{{item.title}}</text>
+  </view>
+  <view class="tabLayer" hidden="{{tab[2]}}">
+    <text class="{{order_id==0?'active':''}}" data-id="0" data-index="2" bindtap="filter">逆序</text>
+    <text class="{{order_id==1?'active':''}}" data-id="1" data-index="2" bindtap="filter">顺序</text>
+  </view>
+</view>
+
+
+<!--顶部标签-->
+<view class='{{showState?"show":"hide"}}' controlled current="{{ current }}" bindchange="tabChange">
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{0==TabCur?'text-black cur':''}}" bindtap="tabSelect" data-id="0" key="PUBLISHED">
+    <text class="cuIcon-roundcheck"></text>已上线
+  </view>
+  <view class="cu-item {{1==TabCur?'text-black cur':''}}" bindtap="tabSelect" data-id="1" key="APPROVED">
+    <text class="cuIcon-loading"></text> 准备中
+  </view>
+  <view class="cu-item {{2==TabCur?'text-black cur':''}}" bindtap="tabSelect" data-id="2" key="FINISHED">
+    <text class="cuIcon-roundclose"></text> 已下线
+  </view>
+  <view class="cu-item {{3==TabCur?'text-black cur':''}}" bindtap="tabSelect" data-id="3" key="RESTARTED">
+    <text class="cuIcon-loading"></text> 重启中
+  </view>
+</scroll-view>
+</view>
+
+
+<!--‘已上线’页-->
+<view class='{{showPage==1?"show":"hide"}}'>
+  <scroll-view>
+    <block wx:for='{{publishList}}' wx:key='{{index}}'>
+      <view title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!--‘准备中’页-->
+<view class='{{showPage==2?"show":"hide"}}'>
+  <scroll-view>
+    <block wx:for='{{approvList}}' wx:key='{{index}}'>
+      <view title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!--‘已下线’页-->
+<view class='{{showPage==3?"show":"hide"}}'>
+  <scroll-view>
+    <block wx:for='{{finishList}}' wx:key='{{index}}'>
+      <wux-cell title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
+      </wux-cell>
+    </block>
+  </scroll-view>
+</view>
+<!--‘已重启’页-->
+<view class='{{showPage==4?"show":"hide"}}'>
+  <scroll-view>
+    <block wx:for='{{restartList}}' wx:key='{{index}}'>
+      <view title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+<!-- 暂无活动显示 -->
+<view class="empty_page padding-xs flex align-center">
+    <view class="flex-sub text-center" hidden='{{!empty}}'>
+      <view class="text-xsl padding">
+        <text class="cuIcon-post text-grey"></text>
+      </view>
+      <view visible="{{empty[showPage-1]}}" class="padding">暂无活动信息</view>
+    </view>
+</view>

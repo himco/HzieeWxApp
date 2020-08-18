@@ -1,0 +1,40 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{false}}">
+	<view slot="content">信工第二课堂</view>
+</cu-custom>
+
+<!-- <view style="width:100vw;position:fixed;top:170rpx;z-index:9999" class="margin-top-sm flex justify-center align-center">
+	<view style="width:95vw;" hidden="{{!isLoad}}" class="radius cu-load bg-blue loading"></view>
+</view> -->
+
+<!-- 背景图片 -->
+<image style="width:100vw" mode="widthFix" src="/images/index.jpg"></image>
+<!-- 主体 -->
+<view class="padding-xl">
+
+
+	<!--图标-->
+	<view style="width:100%;height:auto;position:relative;top:-130rpx;animation-delay: 0.1s" class="flex flex-direction align-center animation-slide-bottom">
+		<image style="width:160rpx" class="cu-avatar radius" mode="widthFix" src="/images/logo.png"></image>
+	</view>
+
+	<!-- 表单 -->
+	<form bindsubmit="login">
+
+		<view style="animation-delay: 0.2s;" class="cu-form-group animation-slide-bottom">
+			<view class="title">账号</view>
+			<input name="username" placeholder="默认账号为学号"></input>
+		</view>
+
+		<view style="animation-delay: 0.3s;" class="cu-form-group margin-top-xl animation-slide-bottom">
+			<view class="title">密码</view>
+			<input name="password" type="password" placeholder="默认密码为Hziee+学号"></input>
+		</view>
+
+		<view style="margin-top:150rpx"></view>
+
+		<button style="width:100%;animation-delay: 0.4s;" class="cu-btn bg-green lg margin-top-xl animation-slide-bottom" loading="{{isLoad}}" form-type="submit" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登陆</button>
+
+	</form>
+
+
+</view>

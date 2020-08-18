@@ -1,0 +1,9 @@
+<view class='box'>
+  <text style="animation-delay: 0.1s;" class="animation-slide-bottom">第</text>
+  <text style="animation-delay: 0.1s;" class="animation-slide-bottom">二</text>
+  <text style="animation-delay: 0.1s;" class="animation-slide-bottom">课</text>
+  <text style="animation-delay: 0.2s;" class="animation-slide-bottom">堂</text>
+  <text style="animation-delay: 0.2s;" class="animation-slide-bottom">成</text>
+  <text style="animation-delay: 0.2s;" class="animation-slide-bottom">绩</text>
+  <text style="animation-delay: 0.3s;" class="animation-slide-bottom">单</text>
+</view>

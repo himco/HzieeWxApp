@@ -1,0 +1,113 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">创建活动</view>
+</cu-custom>
+
+<form>
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-green"></text>必填项
+		</view>
+	</view>
+
+	<!--活动/职务名称-->
+	<view class="cu-form-group">
+		<view class="title">活动名称</view>
+		<input placeholder="请输入活动名称" data-name='activityName' bindchange='input'></input>
+	</view>
+
+	<!--活动类型-->
+	<view class="cu-form-group">
+		<view class="title">活动类型</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+			<view class="picker">
+				{{index?picker[index]:'校园活动'}}<text class="margin-left margin-right cuIcon-unfold"></text>
+			</view>
+		</picker>
+	</view>
+
+	<!--学期-->
+	<view class="cu-form-group">
+		<view class="title">活动学期</view>
+		<picker bindchange="PickersChange" value="{{indexs}}" range="{{pickers}}">
+			<view class="picker">
+				{{indexs?pickers[indexs]:'2017-2018 第一学期'}}<text class="margin-left margin-right cuIcon-unfold"></text>
+			</view>
+		</picker>
+	</view>
+
+	<!--举办单位-->
+	<view class="cu-form-group">
+		<view class="title">举办单位</view>
+		<input placeholder="请输入活动主办方名称" data-name='organizationMessage' bindchange='input'></input>
+	</view>
+
+
+	<view class="cu-form-group margin-top">
+
+		<view class="title">开始于</view>
+		<picker mode="date" value="{{activitystartDay}}" start="{{activitystartDay}}" bindchange="startDateChange">
+			<view class="picker">
+				{{activitystartDay}}<text class="margin-left margin-right cuIcon-unfold"></text>
+			</view>
+		</picker>
+
+		<picker mode="time" value="{{activityStartTime}}" bindchange="setStartTime">
+			<view class="picker">
+				{{activityStartTime}}<text class="margin-left margin-right cuIcon-unfold"></text>
+			</view>
+		</picker>
+
+	</view>
+
+  	<view class="cu-form-group margin-top">
+
+		<view class="title">结束于</view>
+		<picker mode="date" value="{{activityendDay}}" start="{{activityendDay}}" bindchange="endDateChange">
+			<view class="picker">
+				{{activityendDay}}<text class="margin-left margin-right cuIcon-unfold"></text>
+			</view>
+		</picker>
+
+		<picker mode="time" value="{{activityEndTime}}" bindchange="setEndTime">
+			<view class="picker">
+				{{activityEndTime}}<text class="margin-left margin-right cuIcon-unfold"></text>
+			</view>
+		</picker>
+
+	</view>
+
+
+</form>
+
+
+
+<view class="margin-top-xl"></view>
+
+<form>
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-green"></text>选填项
+		</view>
+	</view>
+
+	<!--时长不由创建活动控制-->
+	<!-- <wux-cell title='志愿时长(时)'>
+      <wux-input-number data-name='act_hour' bind:change='input' disabled='{{false}}' slot="footer" />
+    </wux-cell>
+    <wux-cell title='志愿时长(分)'>
+      <wux-input-number data-name='act_minute' bind:change='input' disabled='{{false}}' slot="footer" /> 
+    </wux-cell> -->
+	<!--备注-->
+
+	<view class="cu-form-group align-start">
+		<view class="title">备注</view>
+		<textarea style="min-height:180rpx" maxlength="-1" auto-height disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="填写活动详细信息"></textarea>
+	</view>
+
+</form>
+
+<view class="margin-top-xl"></view>
+<view class="padding flex flex-direction">
+	<button class="cu-btn bg-grey lg" bindmytap="toSubmit" data-type="school">提交</button>
+</view>

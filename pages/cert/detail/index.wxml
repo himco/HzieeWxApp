@@ -1,0 +1,39 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">证书详情</view>
+</cu-custom>
+
+<view class="cu-form-group margin-top">
+	<view class="title">邮件</view>
+	<input placeholder="两字短标题"></input>
+</view>
+<view class="cu-form-group">
+	<view class="title">输入框</view>
+	<input placeholder="三字标题"></input>
+</view>
+<view class="cu-form-group">
+	<view class="title">收货地址</view>
+	<input placeholder="统一标题的宽度"></input>
+</view>
+<view class="cu-form-group">
+	<view class="title">收货地址</view>
+	<input placeholder="输入框带个图标"></input>
+	<text class="cuIcon-locationfill text-orange"></text>
+</view>
+<view class="cu-form-group">
+	<view class="title">验证码</view>
+	<input placeholder="输入框带个按钮"></input>
+	<button class="cu-btn bg-green shadow">验证码</button>
+</view>
+<view class="cu-form-group">
+	<view class="title">手机号码</view>
+	<input placeholder="输入框带标签"></input>
+	<view class="cu-capsule radius">
+		<view class="cu-tag bg-blue">
+			+86
+		</view>
+		<view class="cu-tag line-blue">
+			中国大陆
+		</view>
+	</view>
+</view>

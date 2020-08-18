@@ -1,0 +1,49 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">我的证书</view>
+</cu-custom>
+
+<block wx:for="{{itemList}}" wx:key="item">
+
+	<view class="cu-bar bg-white solid-bottom margin-top">
+		<view class="action">
+			<text class="cuIcon-title text-orange "></text> {{item.name}}
+		</view>
+		<view class="action">
+			<button class="cu-btn bg-green shadow" bindtap="toAdd" data-type="{{item.type}}">录入</button>
+		</view>
+	</view>
+
+	<!-- <view class="cu-list grid col-3 no-border}}"> -->
+	<view class="cu-list grid col-3}}">
+		<view class="cu-item flex justify-center" wx:for="{{item.data}}" wx:key="item" wx:if="{{item.data.length!=0}}">
+
+			<view style="z-index:100" class="tag-for-this {{item.status=='已审核'?'bg-green':(item.status=='审核中'?'bg-orange':'bg-red')}}">{{item.status}}</view>
+
+			<image class="padding-left padding-right" src="{{item.pictureUrl}}" mode="widthFix" data-id="{{item.certificateId}}" bindtap="toDetail"></image>
+			<view class="cuIcon"  data-id="{{item.certificateId}}" bindtap="toDetail">
+				<text class="margin-left margin-right text-cut">{{item.certificateName}}</text>
+			</view>
+
+		</view>
+
+		<view wx:if="{{item.data.length==0}}" class="flex-sub text-center">
+			<view class="text-xsl padding">
+				<text class="cuIcon-post text-grey"></text>
+			</view>
+			<!-- <view class="padding text-gray">暂无{{item.type}}</view> -->
+			<view class="padding text-gray">虚以待位</view>
+		</view>
+
+
+	</view>
+
+</block>
+<view class="margin flex justify-center align-center">
+	<view class="text-gray">—— 没有更多了哦 ——</view>
+</view>
+
+<!-- 暂无活动显示 -->
+<view class="empty_page padding-xs flex align-center">
+
+</view>

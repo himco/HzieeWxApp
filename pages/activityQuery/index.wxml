@@ -1,0 +1,106 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">活动查询</view>
+</cu-custom>
+
+<!--筛选项-->
+<view class=''>
+
+	<view class="swiper-tab">
+		<view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-currentind="0" bindtap="tabNav">
+			类型{{typeTabList[type_id]?' - '+typeTabList[type_id].title:''}}
+		</view>
+		<view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-currentind="1" bindtap="tabNav">
+			状态{{typeState[term_id]?' - '+typeState[term_id].title:''}}
+		</view>
+	</view>
+
+	<!--筛选列表-->
+	<view class="tabLayer" hidden="{{tab[0]}}">
+		<text class="{{type_id==item.id?'active':''}}"
+          wx:for="{{typeTabList}}"
+          wx:key="p1"
+          wx:for-item="item"
+          data-id="{{item.id}}"
+          data-index="0"
+          bindtap="filter">
+		{{item.title}}
+		</text>
+	</view>
+
+	<view class="tabLayer" hidden="{{tab[1]}}">
+		<text class="{{term_id==item.id?'active':''}}"
+          wx:for="{{typeState}}"
+          wx:key="p2"
+          wx:for-item="item"
+          data-id="{{item.id}}"
+          data-index="1"
+          bindtap="filter">
+		{{item.title}}
+		</text>
+	</view>
+
+</view>
+
+
+
+<block wx:for="{{listData}}" wx:key="item">
+	<!--no-card-->
+	<view class="cu-card article">
+		<view class="cu-item shadow">
+			<view class="title margin-bottom-sm">
+				<view style="border-bottom:solid 1rpx #c3c3c3;line-height:normal" class="flex justify-between margin-top-sm">
+					<view class="text-lg margin-bottom-sm">{{item.activityName}}</view>
+					<!-- <view wx:if="{{pageInfo.more}}" style="font-weight:normal;width:fit-content;margin:auto unset" class="text-gray">{{item.activityTime}}小时</view> -->
+				</view>
+			</view>
+
+			<view class="content">
+				<view class="desc">
+
+					<!-- <view class="text-content"> -->
+					<view style="color:#888;line-height:1.5rem">
+						<view class="flex">
+							<text>时间：</text>
+							<text>2020年8月14日 18:22</text>
+						</view>
+						<view class="flex">
+							<text>地点：</text>
+							<text>笃行楼501</text>
+						</view>
+						<view class="flex">
+							<text>描述：</text>
+							<text style="flex:1">要求认真负责，做事认真，搬运家具。答复我们从未是的萨克是酒落的仓位哦是爱可登深。</text>
+						</view>
+					</view>
+
+					<button style="width:100%" class="margin-top-sm cu-btn bg-blue">1分30秒</button>
+					<button style="width:100%" class="margin-top-sm cu-btn bg-red">报名</button>
+					<button style="width:100%" class="margin-top-sm cu-btn bg-green">已报名</button>
+					<button style="width:100%" class="margin-top-sm cu-btn bg-yellow">人已满</button>
+					<button style="width:100%" class="margin-top-sm cu-btn bg-purple">已过期</button>
+					<button style="width:100%" class="margin-top-sm cu-btn bg-orange">已结束</button>
+
+
+					<view class="margin-top">
+						<view class="cu-tag bg-green light sm round">{{item.term}}</view>
+						<view class="cu-tag bg-red light sm round">{{item.organizationMessage}}</view>
+					</view>
+
+
+				</view>
+			</view>
+		</view>
+	</view>
+</block>
+
+
+<!-- 暂无活动显示 -->
+<view wx:if="{{empty}}" class="empty_page padding-xs flex align-center">
+	<view class="flex-sub text-center" hidden='{{!empty}}'>
+		<view class="text-xsl padding">
+			<text class="cuIcon-post text-grey"></text>
+		</view>
+		<view visible="{{empty}}" class="padding text-gray">暂无活动哦</view>
+	</view>
+</view>

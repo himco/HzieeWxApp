@@ -1,0 +1,121 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.12.0",
+	"appid": "wx551daf14b0dfa9c0",
+	"projectname": "%E4%BF%A1%E5%B7%A5%E7%AC%AC%E4%BA%8C%E8%AF%BE%E5%A0%82UI%2B",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "绑定",
+					"pathName": "pages/bind/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "预登陆",
+					"pathName": "pages/prelogin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改密码",
+					"pathName": "pages/cgPwd/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "详情 -- 讲座",
+					"pathName": "pages/detail/index",
+					"query": "type=lectureActivity",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的证书",
+					"pathName": "pages/cert/index",
+					"query": "type=lectureActivity",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "证书详情",
+					"pathName": "pages/cert/detail/index",
+					"query": "id=202002191451484458215001202007",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "证书录入",
+					"pathName": "pages/cert/add/index",
+					"query": "type=QUALIFICATIONS",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "记录员任务",
+					"pathName": "pages/activityScanner/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

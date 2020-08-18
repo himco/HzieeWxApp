@@ -1,0 +1,73 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">扫码</view>
+</cu-custom>
+
+<!--活动名称-->
+<view class="padding text-center">
+  <view class="padding radius shadow bg-green margin-top" theme="positive">测试活动233{{Activity_Name}}</view>
+</view>
+
+ <!--记录显示-->
+  <view class='notice'>
+    <view class="cu-capsule" theme="positive">
+    <view class="cu-tag bg-green">
+      学号
+    </view>
+    <view class="cu-tag line-green">
+      姓名
+    </view>
+  </view>
+
+  <block wx:for="{{Participants_Array}}" wx:key="{{index}}">
+      <view class="cu-capsule" theme="positive" bindtap='click' data-index='{{index}}' defaultCurrent='1' theme="stable" >
+    <view class="cu-tag bg-gray">
+      {{item.stuId}}
+    </view>
+    <view class="cu-tag line-gray">
+      {{item.stuName}}
+    </view>
+      </view>
+    </block>
+  </view>
+
+
+<!--提示信息-->
+    <view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>扫满5个自动提交
+  </view>
+    </view>
+
+<!--根据活动类型出现的选项-->
+<form>
+<view class="{{Show_Time?'':'hidden'}}" thumb='../../images/icon-time.svg' class="cu-form-group">
+  <!--志愿时长-->
+    <view class="title">志愿/义工时长(时)</view>
+		<input step='{{0.5}}' slot='footer' bind:change='inputTime' disabled='{{false}}'></input>
+</view>
+<view class="{{Show_ChangeTime?'':'hidden'}}" thumb='../../images/icon-time.svg' class="cu-form-group">
+  <!--交换一小时时长-->
+  <view class="title">交换一小时时长(时)</view>
+		<input step='{{1}}' slot='footer' bind:change='inputTime' disabled='{{false}}'></input>
+</view>
+<view class="{{Show_Work?'':'hidden'}}" thumb='../../images/icon-work.svg' class="cu-form-group">
+  <!--义工工作-->
+  <view class="title">义工工作</view>
+		<input placeholder="在这里输入" bind:change='inputWork'></input>
+</view>
+<view class="{{Show_Grade?'':'hidden'}}" thumb='../../images/icon-level.svg' class="cu-form-group">
+  <!--实践等级-->
+  <view class="title" extra="{{ Grade }}" bind:click="selectGrade">实践等级</view>
+		<picker id="Grade_Select">
+		</picker>
+</view>
+</form>
+
+
+<!--两个按钮-->
+  <view class="padding flex flex-direction">
+  <button class="cu-btn bg-grey lg" bindtap='scanCode' type="qr-scanner">扫码</button>
+  <button class="cu-btn bg-grey margin-tb-sm lg" bindtap='submit' type="allow-round-up">提交</button>
+</view>
+
